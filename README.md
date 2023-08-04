@@ -11,7 +11,7 @@ create a `docker-compose.yml`:
 version: "3"
 services:
   web-note:
-    image: ghcr.io/Lincest/web-note:latest
+    image: ghcr.io/lincest/web-note:latest
     container_name: web-note
     restart: always
     ports:

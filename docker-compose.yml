@@ -1,13 +1,13 @@
-version: "2.4"
+version: "3"
 services:
-  minimalist-web-notepad:
-    build: .
-    container_name: minimalist-web-notepad
+  web-note:
+    image: ghcr.io/Lincest/web-note:latest
+    container_name: web-note
     restart: always
     ports:
      - "80:80"
     volumes:
-     - minimalist-web-notepad:/var/www/html/_tmp
+     - ./data:/var/www/html/_tmp
 
 volumes:
-  minimalist-web-notepad:
+  web-note:

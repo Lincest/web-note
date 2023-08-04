@@ -5,7 +5,25 @@ forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web
 
 ### Usage
 
-TODO
+create a `docker-compose.yml`: 
+
+```yaml
+version: "3"
+services:
+  web-note:
+    image: ghcr.io/Lincest/web-note:latest
+    container_name: web-note
+    restart: always
+    ports:
+     - "80:80"
+    volumes:
+     - ./data:/var/www/html/_tmp
+
+volumes:
+  web-note:
+```
+
+then `docker-compose up -d`
 
 ### Copyright and license
 

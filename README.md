@@ -18,6 +18,9 @@ services:
      - "80:80"
     volumes:
      - ./data:/var/www/html/_tmp
+    # environment: (optional)
+    #  FILE_LIMIT: 100000 # the number of files limit (default: 100000)
+    #  SINGLE_FILE_SIZE_LIMIT: 102400 # single file size limit, unit: byte (default: 102400)
 
 volumes:
   web-note:

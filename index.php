@@ -1,11 +1,17 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = getenv('MWN_BASE_URL') ?: '';
+$base_url = '';
 
 // Path to the directory to save the notes in, without trailing slash.
 // Should be outside of the document root, if possible.
-$save_path = getenv('MWN_SAVE_PATH') ?: '_tmp';
+$save_path = '_tmp';
+
+$file_limit = getenv('FILE_LIMIT') ?: 100000; // the number of files limit
+$single_file_size_limit = getenv('SINGLE_FILE_SIZE_LIMIT') ?: 102400; // the size of single file limit
+
+$files = scandir($save_path);
+$fileCount = count($files) - 2;
 
 // Disable caching.
 header('Cache-Control: no-cache, no-store, must-revalidate');
@@ -23,6 +29,20 @@ if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) ||
 $path = $save_path . '/' . $_GET['note'];
 
 if (isset($_POST['text'])) {
+
+    // file count limit
+    if ($fileCount >= $file_limit) {
+        error_log("File limit reached $file_limit");
+        header('HTTP/1.0 403 Forbidden');
+        die;
+    }
+    
+    // single file size limit
+    if (strlen($_POST['text']) > $single_file_size_limit) {
+        error_log("File size limit reached 100k");
+        header('HTTP/1.0 403 Forbidden');
+        die;
+    }
 
     // Update file.
     file_put_contents($path, $_POST['text']);

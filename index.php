@@ -39,7 +39,7 @@ if (isset($_POST['text'])) {
     
     // single file size limit
     if (strlen($_POST['text']) > $single_file_size_limit) {
-        error_log("File size limit reached 100k");
+        error_log("File size limit reached $single_file_size_limit");
         header('HTTP/1.0 403 Forbidden');
         die;
     }

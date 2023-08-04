@@ -28,6 +28,10 @@ volumes:
 
 then `docker-compose up -d`
 
+### from source
+
+to build your image from source code, just use `docker-compose up --build` in the source code directory.
+
 ### Copyright and license
 
 Copyright 2012 Pere Orga pere@orga.cat

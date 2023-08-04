@@ -1,0 +1,59 @@
+# tag should be like: web-note/v0.0.1
+
+name: Build & Publish
+
+on:
+  push:
+    tags: ["**"]
+
+env:
+  REGISTRY: ghcr.io
+  GIT_ACC: Lincest
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Regex matching
+        uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.ref_name }}
+          regex: '([a-z-]+)\/v[0-9]+.[0-9]+.[0-9]+'
+
+      - name: Exit if tag not matched
+        if: ${{ steps.regex-match.outputs.match == '' }}
+        run: |
+          echo "Tag was not matched"
+          exit 1
+
+      - name: Set APP in env
+        run: echo "APP=${{ steps.regex-match.outputs.group1 }}" >> $GITHUB_ENV
+
+      - name: Log into the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.GIT_USERNAME }}
+          password: ${{ secrets.GIT_GHR_SECRET }}
+
+      - name: Extract metadata for the Docker image
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.GIT_ACC }}/${{ env.APP }}
+          tags: type=match,pattern=\d.\d.\d
+
+      - name: Build and push the Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            "APP=${{ env.APP }}"

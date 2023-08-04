@@ -49,7 +49,6 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Minimalist Web Notepad (https://github.com/pereorga/minimalist-web-notepad)">
     <title><?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">

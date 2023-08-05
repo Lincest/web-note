@@ -32,6 +32,17 @@ then `docker-compose up -d`
 
 to build your image from source code, just use `docker-compose up --build` in the source code directory.
 
+### command line usage
+
+```shell
+# push a message
+$ curl --data "text=hello world" https://note.mmmm.tech/123
+
+# pull a message
+$ curl https://note.mmmm.tech/123
+hello world%
+```
+
 ### Copyright and license
 
 Copyright 2012 Pere Orga pere@orga.cat

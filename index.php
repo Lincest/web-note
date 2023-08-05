@@ -87,9 +87,9 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         <div class="link">
             <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
             <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
-            🔁 refresh &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
+            💡 new &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
             </a>
-            <a href="#" id="showQRCode">&nbsp; | &nbsp;🔲 share</a>
+            <a href="#" id="showQRCode">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>
     <pre id="printable"></pre>

@@ -3,6 +3,11 @@
 
 forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad)
 
+<div>
+  <img src="https://i.imgur.com/JqqY6EG.png" alt="white" style="float:left;width:50%;padding-right:10px;">
+  <img src="https://i.imgur.com/1SUNnQx.png" alt="dark" style="float:right;width:50%;padding-left:10px;">
+</div>
+
 ### Usage
 
 create a `docker-compose.yml`: 

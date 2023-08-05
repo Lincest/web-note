@@ -36,14 +36,14 @@ body {
   bottom: 1em;
   height: 0.8em;
   text-align: center;
-  color: #aaa;
+  color: #313131;
   font-size: 14px;
   font-family: Menlo, Monaco, Consolas, "Courier New", sans-serif;
 }
 
 .link a {
   display: inline-block;
-  color: #aaa;
+  color: #313131;
   text-decoration: none;
 }
 
@@ -55,6 +55,9 @@ body {
     background: #22252a;
     color: #f8f8f2;
     border: 0;
+  }
+  .link, .link a {
+    color: #aaa;
   }
 }
 

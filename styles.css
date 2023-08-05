@@ -89,3 +89,7 @@ body {
   text-align: center;
   margin-bottom: 10px;
 }
+
+.my-footer {
+  padding: env(safe-area-inset-bottom, 10px);
+}

@@ -3,9 +3,9 @@
 
 forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad)
 
-<div style="text-align: center;">
-  <img src="https://i.imgur.com/JqqY6EG.png" alt="white" style="width:40%;padding-right:20px;display: inline-block;">
-  <img src="https://i.imgur.com/5wb5Bay.png" alt="dark" style="width:40%;padding-left:20px;display: inline-block;">
+<div align=center>
+  <img src="https://i.imgur.com/EfLSz55.png" alt="white" width="45%" hspace="10">
+  <img src="https://i.imgur.com/w8DGwoy.png" alt="dark" width="45%" hspace="10">
 </div>
 
 ### Usage

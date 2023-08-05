@@ -80,6 +80,11 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <div class="flag">
+            <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
+            <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?>
+        </a>
+        </div>
     </div>
     <pre id="printable"></pre>
     <script src="<?php print $base_url; ?>/script.js"></script>

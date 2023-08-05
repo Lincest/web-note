@@ -6,7 +6,7 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    bottom: 20px;
+    bottom: 30px;
     left: 20px;
 }
 #content {
@@ -24,6 +24,21 @@ body {
 }
 #printable {
     display: none;
+}
+.flag {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 1em;
+    height: .8em;
+    text-align: center;
+    color: #aaa;
+    font-size: 14px
+}
+
+.flag a {
+    color: #aaa;
+    text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {

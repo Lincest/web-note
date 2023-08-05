@@ -72,21 +72,52 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <title><?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
+        <div id="qrcodePopup">
+            <div id="qrcode"></div>
+        </div>
         <textarea id="content"><?php
             if (is_file($path)) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
-        <div class="flag">
+        <div class="link">
             <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
-            <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?>
-        </a>
+            <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
+            🔁 refresh &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
+            </a>
+            <a href="#" id="showQRCode">&nbsp; | &nbsp;🔲 share</a>
         </div>
     </div>
     <pre id="printable"></pre>
     <script src="<?php print $base_url; ?>/script.js"></script>
+    <div id="qrcode"></div>
+    <script type="text/javascript">
+        // qrcode
+        var isGenerate = false;
+        document.getElementById('showQRCode').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('qrcodePopup').style.display = 'block';
+
+            var url = window.location.href;
+            if (!isGenerate) {
+                var qrcode = new QRCode(document.getElementById('qrcode'), {
+                    text: url,
+                    width: 200,
+                    height: 200
+                });
+                isGenerate = true;
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#qrcodePopup') && !e.target.closest('#showQRCode')) {
+                document.getElementById('qrcodePopup').style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

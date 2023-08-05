@@ -25,7 +25,7 @@ body {
 #printable {
     display: none;
 }
-.flag {
+.link {
     position: fixed;
     left: 0;
     right: 0;
@@ -36,7 +36,8 @@ body {
     font-size: 14px
 }
 
-.flag a {
+.link a {
+    display: inline-block;
     color: #aaa;
     text-decoration: none;
 }
@@ -61,4 +62,22 @@ body {
         white-space: pre-wrap;
         word-break: break-word;
     }
+}
+
+#qrcodePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+}
+
+#qrcode {
+    text-align: center;
+    margin-bottom: 10px;
 }

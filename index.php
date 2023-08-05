@@ -92,7 +92,6 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
             <a href="#" id="showQRCode">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>
-    <div class="opt-footer"></div>
     <pre id="printable"></pre>
     <script src="<?php print $base_url; ?>/script.js"></script>
     <div id="qrcode"></div>

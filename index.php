@@ -79,7 +79,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         <div id="qrcodePopup">
             <div id="qrcode"></div>
         </div>
-        <textarea id="content"><?php
+        <textarea id="content" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"><?php
             if (is_file($path)) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }

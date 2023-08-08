@@ -73,6 +73,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -89,7 +90,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
             <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
             💡 new &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
             </a>
-            <a href="#" id="showQRCode">&nbsp; | &nbsp;🔗 share</a>
+            <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>
     <pre id="printable"></pre>
@@ -98,15 +99,29 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script type="text/javascript">
         // qrcode
         var isGenerate = false;
+
+        var clipboard = new ClipboardJS('.copyBtn', {
+            text: function() {
+                return window.location.href; // 返回当前页面的URL
+            }
+        });
+        // 复制成功后的回调函数
+        clipboard.on('success', function(e) {
+            console.log('link copied');
+            showNotification("link copied");
+            e.clearSelection();
+        });
+
+        // 复制失败后的回调函数
+        clipboard.on('error', function(e) {
+            console.error('link copied failed');
+            showNotification("link copied failed");
+        });
+
         document.getElementById('showQRCode').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('qrcodePopup').style.display = 'block';
             var url = window.location.href;
-
-            navigator.clipboard.writeText(url).then(function() {
-                showNotification("link copied");
-            });
-
             if (!isGenerate) {
                 var qrcode = new QRCode(document.getElementById('qrcode'), {
                     text: url,

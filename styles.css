@@ -117,6 +117,31 @@ body {
   outline: 0;
 }
 
+#markdown-content code, pre, #ws, #message {
+	font-family: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace !important;
+	border-radius: 3px;
+	background-color: #F8F8F8;
+	color: inherit;
+}
+
+#markdown-content code {
+	border: 1px solid #EAEAEA;
+	margin: 0 2px;
+	padding: 0 5px;
+}
+
+#markdown-content pre {
+	border: 1px solid #CCCCCC;
+	overflow: auto;
+	padding: 4px 8px;
+}
+
+#markdown-content pre > code {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
 /* end markdown style */
 
 /* dark mode */
@@ -136,6 +161,17 @@ body {
   .link,
   .link a {
     color: #aaa;
+  }
+  #markdown-content code, pre, #ws, #message {
+    background-color: #2d333b;
+  }
+
+  #markdown-content code {
+    border: 1px solid #464c55;
+  }
+
+  #markdown-content pre {
+    border: 1px solid #464c55;
   }
 }
 

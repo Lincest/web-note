@@ -101,8 +101,12 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         document.getElementById('showQRCode').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('qrcodePopup').style.display = 'block';
-
             var url = window.location.href;
+
+            navigator.clipboard.writeText(url).then(function() {
+                showNotification("link copied");
+            });
+
             if (!isGenerate) {
                 var qrcode = new QRCode(document.getElementById('qrcode'), {
                     text: url,
@@ -118,6 +122,22 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
                 document.getElementById('qrcodePopup').style.display = 'none';
             }
         });
+
+        document.addEventListener("keydown", function(event) {
+            event.preventDefault();
+            document.getElementById('qrcodePopup').style.display = 'none';
+        });
+
+        function showNotification(message) {
+            var notify = document.createElement("div");
+            notify.className = "notify";
+            notify.textContent = message;
+            document.body.appendChild(notify);
+
+            setTimeout(function() {
+                document.body.removeChild(notify);
+            }, 1000);
+        }
     </script>
 </body>
 </html>

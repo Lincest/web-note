@@ -89,3 +89,22 @@ body {
   text-align: center;
   margin-bottom: 10px;
 }
+
+.notify {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 4em);;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 999;
+}
+
+@media screen and (max-width: 767px) {
+  .notify {
+    font-size: 12px;
+  }
+}

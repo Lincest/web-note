@@ -27,3 +27,11 @@ document.getElementById("renderMarkdown").addEventListener("click", function (ev
     event.preventDefault();
     renderMarkdown();
 });
+
+// map multiple combinations to the same callback
+// detect system windows(ctrl + e), macos(command + e)
+Mousetrap.bind('mod+e', function () {
+    renderMarkdown();
+    // return false to prevent default browser behavior
+    return false;
+});

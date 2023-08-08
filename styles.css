@@ -146,8 +146,8 @@ body {
   position: fixed;
   cursor: pointer;
   z-index: 99999;
-  top: 40px;
-  right: 40px;
+  top: 25px;
+  right: 25px;
   display: none;
 }
 

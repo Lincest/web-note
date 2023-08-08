@@ -86,6 +86,9 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <button id="clippy" class="btn" data-clipboard-action="copy" data-clipboard-target="#content">
+            <img src="/clippy.svg" alt="Copy to clipboard" style="width: 15px;">
+        </button>
         <div id="markdown-content" style="display: none"></div>
         <div class="link">
             <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
@@ -105,6 +108,12 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script type="text/javascript">
         // qrcode
         var isGenerate = false;
+        var clipboardForContent = new ClipboardJS('.btn');
+
+        clipboardForContent.on('success', function(e) {
+            showNotification("content copied");
+            e.clearSelection();
+        });
 
         var clipboard = new ClipboardJS('.copyBtn', {
             text: function() {

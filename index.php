@@ -74,6 +74,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -85,17 +86,22 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <div id="markdown-content" style="display: none"></div>
         <div class="link">
             <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
             <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
-            💡 new &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
+            💡 new &nbsp;|&nbsp;
             </a>
+            <a href="#" id="renderMarkdown">note<?php echo $_SERVER['REQUEST_URI']; ?></a>
             <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>
     <pre id="printable"></pre>
-    <script src="<?php print $base_url; ?>/script.js"></script>
     <div id="qrcode"></div>
+    <!-- upload   -->
+    <script src="<?php print $base_url; ?>/script.js"></script>
+    <!-- markdown render -->
+    <script src="<?php print $base_url; ?>/markdown.js"></script>
     <script type="text/javascript">
         // qrcode
         var isGenerate = false;
@@ -105,14 +111,13 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
                 return window.location.href; // 返回当前页面的URL
             }
         });
-        // 复制成功后的回调函数
+
         clipboard.on('success', function(e) {
             console.log('link copied');
             showNotification("link copied");
             e.clearSelection();
         });
 
-        // 复制失败后的回调函数
         clipboard.on('error', function(e) {
             console.error('link copied failed');
             showNotification("link copied failed");

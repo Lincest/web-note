@@ -7,7 +7,7 @@ RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 RUN a2enmod rewrite
 
 # Import App
-COPY .htaccess index.php styles.css script.js favicon.ico notes.htaccess ./
+COPY .htaccess index.php styles.css script.js markdown.js favicon.ico notes.htaccess ./
 
 # Set entrypoint for permissions
 COPY minimalist-web-notepad-entrypoint /usr/local/bin/

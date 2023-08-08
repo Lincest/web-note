@@ -124,8 +124,10 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         });
 
         document.addEventListener("keydown", function(event) {
-            event.preventDefault();
-            document.getElementById('qrcodePopup').style.display = 'none';
+            // esc keydown
+            if (event.keyCode === 27) {
+                document.getElementById('qrcodePopup').style.display = 'none';
+            }
         });
 
         function showNotification(message) {

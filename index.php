@@ -74,87 +74,39 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.5/mousetrap.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div id="qrcodePopup">
             <div id="qrcode"></div>
         </div>
-        <textarea id="content" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"><?php
+        <textarea class="mousetrap" id="content" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"><?php
             if (is_file($path)) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <button id="clippy" class="btn">
+            <img src="/clippy.svg" alt="Copy to clipboard" style="width: 12px; height: 16px;">
+        </button>
+        <div id="markdown-content" style="display: none"></div>
         <div class="link">
             <a href="<?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']; ?>">
             <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
-            💡 new &nbsp;|&nbsp; note<?php echo $_SERVER['REQUEST_URI']; ?>
+            💡 new &nbsp;|&nbsp;
             </a>
+            <a href="#" id="renderMarkdown">note<?php echo $_SERVER['REQUEST_URI']; ?>&nbsp;<label id="renderStatus" style="cursor: pointer">🔓</label></a>
             <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>
     <pre id="printable"></pre>
-    <script src="<?php print $base_url; ?>/script.js"></script>
     <div id="qrcode"></div>
-    <script type="text/javascript">
-        // qrcode
-        var isGenerate = false;
-
-        var clipboard = new ClipboardJS('.copyBtn', {
-            text: function() {
-                return window.location.href; // 返回当前页面的URL
-            }
-        });
-        // 复制成功后的回调函数
-        clipboard.on('success', function(e) {
-            console.log('link copied');
-            showNotification("link copied");
-            e.clearSelection();
-        });
-
-        // 复制失败后的回调函数
-        clipboard.on('error', function(e) {
-            console.error('link copied failed');
-            showNotification("link copied failed");
-        });
-
-        document.getElementById('showQRCode').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('qrcodePopup').style.display = 'block';
-            var url = window.location.href;
-            if (!isGenerate) {
-                var qrcode = new QRCode(document.getElementById('qrcode'), {
-                    text: url,
-                    width: 200,
-                    height: 200
-                });
-                isGenerate = true;
-            }
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('#qrcodePopup') && !e.target.closest('#showQRCode')) {
-                document.getElementById('qrcodePopup').style.display = 'none';
-            }
-        });
-
-        document.addEventListener("keydown", function(event) {
-            // esc keydown
-            if (event.keyCode === 27) {
-                document.getElementById('qrcodePopup').style.display = 'none';
-            }
-        });
-
-        function showNotification(message) {
-            var notify = document.createElement("div");
-            notify.className = "notify";
-            notify.textContent = message;
-            document.body.appendChild(notify);
-
-            setTimeout(function() {
-                document.body.removeChild(notify);
-            }, 1000);
-        }
-    </script>
+    <!-- upload   -->
+    <script src="<?php print $base_url; ?>/script.js"></script>
+    <!-- markdown render -->
+    <script src="<?php print $base_url; ?>/markdown.js"></script>
+    <!-- copy -->
+    <script src="<?php print $base_url; ?>/copy.js"></script>
 </body>
 </html>

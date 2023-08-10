@@ -114,6 +114,7 @@ function _generateExcerpt($text, $length = 150) {
             </a>
             <a href="#" id="renderMarkdown">note/<?php echo $_GET['note']; ?>&nbsp;<label id="renderStatus" style="cursor: pointer">🔓</label></a>
             <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
+            <button id="clearButton" class="btn">Clear All</button>
         </div>
     </div>
     <pre id="printable"></pre>

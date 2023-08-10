@@ -1,14 +1,14 @@
 
-## web-notepad
+# Web-Note
 
-forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad)
+Wiki: [Lincest/web-note/wiki/web%E2%80%90note-wiki](https://github.com/Lincest/web-note/wiki/web%E2%80%90note-wiki)
 
 <div align=center>
   <img src="https://i.imgur.com/EfLSz55.png" alt="white" width="45%" hspace="10">
   <img src="https://i.imgur.com/w8DGwoy.png" alt="dark" width="45%" hspace="10">
 </div>
 
-### Usage
+## Self Host
 
 create a `docker-compose.yml`: 
 
@@ -33,11 +33,11 @@ volumes:
 
 then `docker-compose up -d`
 
-### from source
+## From Source
 
 to build your image from source code, just use `docker-compose up --build` in the source code directory.
 
-### command line usage
+## Commandline Usage
 
 ```shell
 # push a message
@@ -48,7 +48,9 @@ $ curl https://note.mmmm.tech/123
 hello world%
 ```
 
-### Copyright and license
+## Copyright and license
+
+this project is forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad)
 
 Copyright 2012 Pere Orga pere@orga.cat
 

@@ -49,3 +49,11 @@ Mousetrap.bind('mod+s', function () {
     showNotification("content saved");
     return false;
 });
+
+// clear content
+function clearContent() {
+    textarea.value = '';
+}
+
+// add event listener for clearButton
+document.getElementById('clearButton').addEventListener('click', clearContent);

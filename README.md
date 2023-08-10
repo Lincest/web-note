@@ -1,3 +1,5 @@
+![Banner](./path_to_banner_file)
+
 # Web-Note 
 
 [🔗 Wiki: Lincest/web-note/wiki/web-note-wiki](https://github.com/Lincest/web-note/wiki)

@@ -96,7 +96,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
             <!-- <?php echo 'web-note' . $_SERVER['REQUEST_URI']; ?> -->
             💡 new &nbsp;|&nbsp;
             </a>
-            <a href="#" id="renderMarkdown">note<?php echo $_SERVER['REQUEST_URI']; ?>&nbsp;<label id="renderStatus" style="cursor: pointer">🔓</label></a>
+            <a href="#" id="renderMarkdown">note/<?php echo $_GET['note']; ?>&nbsp;<label id="renderStatus" style="cursor: pointer">🔓</label></a>
             <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
         </div>
     </div>

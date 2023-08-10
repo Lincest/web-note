@@ -13,7 +13,7 @@ clipboardForContent.on('success', function (e) {
 
 var clipboard = new ClipboardJS('.copyBtn', {
     text: function () {
-        return window.location.href; // 返回当前页面的URL
+        return getUrl();
     }
 });
 
@@ -31,10 +31,9 @@ clipboard.on('error', function (e) {
 document.getElementById('showQRCode').addEventListener('click', function (e) {
     e.preventDefault();
     document.getElementById('qrcodePopup').style.display = 'block';
-    var url = window.location.href;
     if (!isGenerate) {
         var qrcode = new QRCode(document.getElementById('qrcode'), {
-            text: url,
+            text: getUrl(),
             width: 200,
             height: 200
         });
@@ -63,4 +62,12 @@ function showNotification(message) {
     setTimeout(function () {
         document.body.removeChild(notify);
     }, 1000);
+}
+
+function getUrl(url) {
+    var url = window.location.href;
+    if (document.getElementById("markdown-content").style.display !== "none") {
+        url = url + '?marked';
+    }
+    return url;
 }

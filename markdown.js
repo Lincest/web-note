@@ -1,3 +1,14 @@
+function autoMark() {
+    const currentURL = window.location.href;
+    const regex = /[?&]marked(?:=([^&#]*)|&|#|$)/i;
+    const match = regex.exec(currentURL);
+    if (match !== null) {
+        const updatedURL = currentURL.replace(match[0], '');
+        renderMarkdown();
+        history.pushState(null, null, updatedURL);
+    }
+}
+
 function renderMarkdown() {
     var markdownContent = document.getElementById("markdown-content");
     var contentTextarea = document.getElementById("content");
@@ -35,3 +46,5 @@ Mousetrap.bind('mod+e', function () {
     // return false to prevent default browser behavior
     return false;
 });
+
+autoMark();

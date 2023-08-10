@@ -64,14 +64,30 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     }
     die;
 }
+
+function generateExcerptByPath($p) {
+  if (is_file($p)) {
+    return _generateExcerpt(file_get_contents($p));
+  }
+  return '';
+}
+
+function _generateExcerpt($text, $length = 150) {
+    $excerpt = substr($text, 0, $length);
+    if (strlen($text) > $length) {
+        $excerpt .= "...";
+    }
+    return $excerpt;
+}
 ?><!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php print $_GET['note']; ?></title>
-    <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
+    <title>web-note · <?php print $_GET['note']; ?></title>
+    <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
+    <meta name="description" content="📔 <?php print generateExcerptByPath($path); ?>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

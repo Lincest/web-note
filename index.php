@@ -102,11 +102,11 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     </div>
     <pre id="printable"></pre>
     <div id="qrcode"></div>
-    <!-- upload   -->
-    <script src="<?php print $base_url; ?>/script.js"></script>
     <!-- markdown render -->
     <script src="<?php print $base_url; ?>/markdown.js"></script>
     <!-- copy -->
     <script src="<?php print $base_url; ?>/copy.js"></script>
+    <!-- upload   -->
+    <script src="<?php print $base_url; ?>/script.js"></script>
 </body>
 </html>

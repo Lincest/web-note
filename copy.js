@@ -71,3 +71,15 @@ function getUrl(url) {
     }
     return url;
 }
+
+Mousetrap.bind('mod+e', function () {
+    renderMarkdown();
+    // return false to prevent default browser behavior
+    return false;
+});
+
+Mousetrap.bind('mod+l', function () {
+    document.getElementById("showQRCode").click();
+    // return false to prevent default browser behavior
+    return false;
+});

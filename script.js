@@ -42,3 +42,10 @@ printable.appendChild(document.createTextNode(content));
 
 textarea.focus();
 uploadContent();
+
+// save 
+Mousetrap.bind('mod+s', function () {
+    uploadContent();
+    showNotification("content saved");
+    return false;
+});

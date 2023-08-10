@@ -1,4 +1,4 @@
-![Banner](./path_to_banner_file)
+![Banner](./correct_path_to_banner_file)
 
 # Web-Note 
 

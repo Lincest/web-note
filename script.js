@@ -49,3 +49,8 @@ Mousetrap.bind('mod+s', function () {
     showNotification("content saved");
     return false;
 });
+
+// clear content
+document.getElementById('clearButton').addEventListener('click', function() {
+    textarea.value = '';
+});

@@ -1,14 +1,20 @@
+# Web-Note 
 
-# Web-Note
+[🔗 Wiki: Lincest/web-note/wiki/web-note-wiki](https://github.com/Lincest/web-note/wiki/web%E2%80%90note-wiki)
 
-Wiki: [🔗 Lincest/web-note/wiki/web-note-wiki](https://github.com/Lincest/web-note/wiki/web%E2%80%90note-wiki)
+**TOC**: 
+
+1. [Self Host](#SelfHost)
+2. [From Source](#FromSource)
+3. [Commandline Usage](#CommandlineUsage)
+4. [Copyright and license](#Copyrightandlicense)
 
 <div align=center>
   <img src="https://i.imgur.com/EfLSz55.png" alt="white" width="45%" hspace="10">
   <img src="https://i.imgur.com/w8DGwoy.png" alt="dark" width="45%" hspace="10">
 </div>
 
-## Self Host
+##  1. <a name='SelfHost'></a>Self Host
 
 `docker-compose.yml`: 
 
@@ -31,11 +37,11 @@ volumes:
   web-note:
 ```
 
-## From Source
+##  2. <a name='FromSource'></a>From Source
 
 to build your image from source code, just clone this repo and use `docker-compose up --build` in the source code directory.
 
-## Commandline Usage
+##  3. <a name='CommandlineUsage'></a>Commandline Usage
 
 ```shell
 # push a message
@@ -46,7 +52,7 @@ $ curl https://note.mmmm.tech/123
 hello world%
 ```
 
-## Copyright and license
+##  4. <a name='Copyrightandlicense'></a>Copyright and license
 
 this project is forked from: [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad)
 

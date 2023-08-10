@@ -1,7 +1,7 @@
 
 # Web-Note
 
-Wiki: [Lincest/web-note/wiki/web%E2%80%90note-wiki](https://github.com/Lincest/web-note/wiki/web%E2%80%90note-wiki)
+Wiki: [🔗 Lincest/web-note/wiki/web-note-wiki](https://github.com/Lincest/web-note/wiki/web%E2%80%90note-wiki)
 
 <div align=center>
   <img src="https://i.imgur.com/EfLSz55.png" alt="white" width="45%" hspace="10">
@@ -10,7 +10,7 @@ Wiki: [Lincest/web-note/wiki/web%E2%80%90note-wiki](https://github.com/Lincest/w
 
 ## Self Host
 
-create a `docker-compose.yml`: 
+`docker-compose.yml`: 
 
 ```yaml
 version: "3"
@@ -31,11 +31,9 @@ volumes:
   web-note:
 ```
 
-then `docker-compose up -d`
-
 ## From Source
 
-to build your image from source code, just use `docker-compose up --build` in the source code directory.
+to build your image from source code, just clone this repo and use `docker-compose up --build` in the source code directory.
 
 ## Commandline Usage
 

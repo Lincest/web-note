@@ -103,6 +103,7 @@ function _generateExcerpt($text, $length = 150) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <button id="clearButton" class="btn">Clear All</button>
         <button id="clippy" class="btn">
             <img src="/clippy.svg" alt="Copy to clipboard" style="width: 12px; height: 16px;">
         </button>

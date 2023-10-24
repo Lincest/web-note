@@ -79,7 +79,8 @@ function _generateExcerpt($text, $length = 150) {
     }
     return $excerpt;
 }
-?><!DOCTYPE html>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">

@@ -30,15 +30,15 @@ clipboard.on('error', function (e) {
 
 document.getElementById('showQRCode').addEventListener('click', function (e) {
     e.preventDefault();
-    document.getElementById('qrcodePopup').style.display = 'block';
-    if (!isGenerate) {
-        var qrcode = new QRCode(document.getElementById('qrcode'), {
-            text: getUrl(),
-            width: 200,
-            height: 200
-        });
-        isGenerate = true;
-    }
+    // document.getElementById('qrcodePopup').style.display = 'block';
+    // if (!isGenerate) {
+    //     var qrcode = new QRCode(document.getElementById('qrcode'), {
+    //         text: getUrl(),
+    //         width: 200,
+    //         height: 200
+    //     });
+    //     isGenerate = true;
+    // }
 });
 
 document.addEventListener('click', function (e) {
@@ -67,7 +67,9 @@ function showNotification(message) {
 function getUrl(url) {
     var url = window.location.href;
     if (document.getElementById("markdown-content").style.display !== "none") {
-        url = url + '?marked';
+        if (!url.includes('?marked')) {
+            url = url + '?marked';
+        }
     }
     return url;
 }

@@ -3,9 +3,7 @@ function autoMark() {
     const regex = /[?&]marked(?:=([^&#]*)|&|#|$)/i;
     const match = regex.exec(currentURL);
     if (match !== null) {
-        const updatedURL = currentURL.replace(match[0], '');
         renderMarkdown();
-        history.pushState(null, null, updatedURL);
     }
 }
 
@@ -14,9 +12,14 @@ function renderMarkdown() {
     var contentTextarea = document.getElementById("content");
     var renderStatusIcon = document.getElementById("renderStatus");
     var button = document.getElementById("clippy");
+    var currentUrl = window.location.href;
 
     if (markdownContent.style.display === "none") {
         // Show rendered markdown
+        if (!currentUrl.includes('?marked')) {
+            markedUrl = currentUrl + '?marked';
+            history.pushState(null, null, markedUrl);
+        }
         var markdownText = contentTextarea.value;
         var renderedContent = marked.parse(markdownText);
         markdownContent.innerHTML = renderedContent;
@@ -27,6 +30,10 @@ function renderMarkdown() {
 
     } else {
         // Show original text
+        if (currentUrl.includes('?marked')) {
+            markedUrl = currentUrl.replace('?marked', '');
+            history.pushState(null, null, markedUrl);
+        }
         markdownContent.style.display = "none";
         contentTextarea.style.display = "block";
         button.style.display = "none";

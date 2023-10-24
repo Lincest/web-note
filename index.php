@@ -79,6 +79,7 @@ function _generateExcerpt($text, $length = 150) {
     }
     return $excerpt;
 }
+?>
 
 <!DOCTYPE html>
 <html>

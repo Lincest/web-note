@@ -148,6 +148,13 @@ body {
   width: 50%;
 }
 
+#markdown-content blockquote {
+  position: relative;
+  padding-left: 20px;
+  border-left: 4px solid #ccc; /* 灰色竖线 */
+  margin-left: 0;
+}
+
 .btn {
   position: fixed;
   cursor: pointer;

@@ -35,10 +35,10 @@ to build your image from source code, just clone this repo and use `docker-compo
 
 ```shell
 # push a message
-$ curl --data "text=hello world" https://m.mmmm.tech/123
+$ curl --data "text=hello world" https://mmmm.tech/123
 
 # pull a message
-$ curl https://m.mmmm.tech/123
+$ curl https://mmmm.tech/123
 hello world%
 ```
 

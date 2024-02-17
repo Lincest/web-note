@@ -90,10 +90,14 @@ function _generateExcerpt($text, $length = 150) {
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
     <meta name="description" content="📔 <?php print generateExcerptByPath($path); ?>">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.5/mousetrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.5/mousetrap.min.js"></script> -->
+    <script src="/js/qrcode.min.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <script src="/js/marked.min.js"></script>
+    <script src="/js/mousetrap.min.js"></script>
 </head>
 <body>
     <div class="container">

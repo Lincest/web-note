@@ -100,6 +100,13 @@ function _generateExcerpt($text, $length = 150) {
     <script src="/js/mousetrap.min.js"></script>
 </head>
 <body>
+    <div id="sidebar" class="sidebar">
+        <!-- history -->
+        <script src="<?php print $base_url; ?>/history.js"></script>
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <h3>Recent Notes</h3>
+        <ul id="history-list"></ul>
+    </div>
     <div class="container">
         <div id="qrcodePopup">
             <div id="qrcode"></div>
@@ -120,6 +127,7 @@ function _generateExcerpt($text, $length = 150) {
             </a>
             <a href="#" id="renderMarkdown">note/<?php echo $_GET['note']; ?>&nbsp;<label id="renderStatus" style="cursor: pointer">🔓</label></a>
             <a href="#" id="showQRCode" class="copyBtn">&nbsp; | &nbsp;🔗 share</a>
+            <a href="#" id="showHistory" class="showHistory">&nbsp; | &nbsp;📜 history</a>
         </div>
     </div>
     <pre id="printable"></pre>

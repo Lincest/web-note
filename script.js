@@ -49,3 +49,21 @@ Mousetrap.bind('mod+s', function () {
     showNotification("content saved");
     return false;
 });
+
+// show history
+document.addEventListener('DOMContentLoaded', function() {
+    const note = window.location.pathname.split('/').pop();
+    addToHistory(note);
+    
+    const toggleButton = document.getElementById('showHistory');
+    toggleButton.onclick = toggleSidebar;
+
+    const container = document.querySelector('.container');
+    const sidebar = document.getElementById('sidebar');
+
+    container.addEventListener('click', function(e) {
+        if (sidebar.classList.contains('open') && window.innerWidth <= 768) {
+            toggleSidebar();
+        }
+    });
+});

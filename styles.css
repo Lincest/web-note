@@ -1,33 +1,23 @@
 * {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif !important;
 }
+
 body {
   margin: 0;
   background: #ebeef1;
+  transition: background-color 0.3s ease;
 }
+
 .container {
   position: absolute;
   top: 20px;
   right: 20px;
   bottom: calc(env(safe-area-inset-bottom, 0) + 2em);
   left: 20px;
-}
-#content {
-  font-size: 100%;
-  line-height: 1.5em;
-  margin: 0;
-  padding: 20px;
-  overflow-y: auto;
-  resize: none;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  box-sizing: border-box;
-  border: 1px #ddd solid;
-  outline: none;
+  transition: margin-left .5s;
 }
 
-#markdown-content {
+#content, #markdown-content {
   font-size: 100%;
   line-height: 1.5em;
   margin: 0;
@@ -37,15 +27,17 @@ body {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  outline: none;
   box-sizing: border-box;
   border: 1px #ddd solid;
+  outline: none;
   background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #printable {
   display: none;
 }
+
 .link {
   position: fixed;
   left: 0;
@@ -56,12 +48,14 @@ body {
   color: #313131;
   font-size: 14px;
   font-family: Menlo, Monaco, Consolas, "Courier New", sans-serif;
+  transition: color 0.3s ease;
 }
 
 .link a {
   display: inline-block;
   color: #313131;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 #qrcodePopup {
@@ -95,17 +89,9 @@ body {
   z-index: 999;
 }
 
-@media screen and (max-width: 767px) {
-  .notify {
-    font-size: 12px;
-  }
-}
-
-/* markdown style */
-
-
 #markdown-content a {
-  color: #5281bf
+  color: #5281bf;
+  transition: color 0.3s ease;
 }
 
 #markdown-content a:visited {
@@ -118,40 +104,42 @@ body {
 }
 
 #markdown-content code, pre, #ws, #message {
-	font-family: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace !important;
-	border-radius: 3px;
-	background-color: #F8F8F8;
-	color: inherit;
+  font-family: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace !important;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  color: inherit;
+  transition: background-color 0.3s ease;
 }
 
 #markdown-content code {
-	border: 1px solid #EAEAEA;
-	margin: 0 2px;
-	padding: 0 5px;
+  border: 1px solid #EAEAEA;
+  margin: 0 2px;
+  padding: 0 5px;
 }
 
 #markdown-content pre {
-	border: 1px solid #CCCCCC;
-	overflow: auto;
-	padding: 4px 8px;
+  border: 1px solid #CCCCCC;
+  overflow: auto;
+  padding: 4px 8px;
 }
 
 #markdown-content pre > code {
-	border: 0;
-	margin: 0;
-	padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #markdown-content img {
   display: block;
   margin: 0 auto;
-  width: 50%;
+  max-width: 100%;
+  height: auto;
 }
 
 #markdown-content blockquote {
   position: relative;
   padding-left: 20px;
-  border-left: 4px solid #ccc; /* 灰色竖线 */
+  border-left: 4px solid #ccc;
   margin-left: 0;
 }
 
@@ -164,18 +152,122 @@ body {
   display: none;
 }
 
-/* end markdown style */
+.sidebar {
+  height: 100%;
+  width: 250px; /* 设置一个固定宽度 */
+  position: fixed;
+  z-index: 1000; /* 确保侧边栏在最上层 */
+  top: 0;
+  left: -250px; /* 默认隐藏 */
+  background-color: #f8f8f8;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
 
-/* dark mode */
+.sidebar h3 {
+  padding: 8px 32px;  /* 将左内边距改为32px，与列表项对齐 */
+  margin: 0;  /* 移除默认的外边距 */
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
 
+.sidebar.open {
+  left: 0; /* 当添加 'open' 类时显示侧边栏 */
+}
+
+.container {
+  transition: margin-left .3s;
+}
+
+/* 当侧边栏打开时，调整主容器的位置 */
+.container.sidebar-open {
+  margin-left: 250px;
+}
+
+/* 在小屏幕上的特殊处理 */
+@media screen and (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      left: -100%;
+  }
+  
+  .container.sidebar-open {
+      margin-left: 0;
+      opacity: 0.3; /* 使主内容区域变暗 */
+  }
+}
+
+/* 添加一个关闭按钮 */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #818181;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+#history-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#history-list li {
+  padding: 0;
+  position: relative;
+}
+
+#history-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: block;
+  padding: 8px 32px;
+  padding-right: 40px; /* Make room for delete button */
+}
+
+#history-list li a:hover {
+  background-color: #e6e6e6;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #ff4444;
+}
+
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
-    background: #292c33;
+    background: #1a1c20;
   }
   #content, #markdown-content {
     background: #22252a;
     color: #f8f8f2;
-    border: 0;
+    border: 1px solid #444;
   }
   #markdown-content a {
     color: #a2cefb;
@@ -187,13 +279,83 @@ body {
   #markdown-content code, pre, #ws, #message {
     background-color: #2d333b;
   }
-
   #markdown-content code {
     border: 1px solid #464c55;
   }
-
   #markdown-content pre {
     border: 1px solid #464c55;
+  }
+  .sidebar {
+    background-color: #22252a;
+  }
+  .sidebar h3 {
+    color: #aaa;
+  }
+  
+  .close-btn {
+      color: #aaa;
+  }
+
+  .close-btn:hover {
+      color: #fff;
+  }
+
+  #history-list li a {
+      color: #ddd;
+  }
+
+  #history-list li a:hover {
+      background-color: #3a3f4b;
+  }
+
+  .delete-btn {
+      color: #777;
+  }
+
+  .delete-btn:hover {
+      color: #ff6666;
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .container {
+    top: 10px;
+    right: 10px;
+    bottom: calc(env(safe-area-inset-bottom, 0) + 2em);
+    left: 10px;
+  }
+  
+  #content, #markdown-content {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .link {
+    font-size: 12px;
+  }
+  
+  .notify {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding-top: 30px;
+  }
+  
+  .sidebar h3 {
+    font-size: 16px;
+    padding: 8px 8px 8px 16px;
+  }
+  
+  #history-list li {
+    padding: 8px 8px 8px 16px;
+  }
+  
+  #history-list li a {
+    font-size: 14px;
   }
 }
 
@@ -207,3 +369,4 @@ body {
     word-break: break-word;
   }
 }
+

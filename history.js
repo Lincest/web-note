@@ -51,6 +51,19 @@ function deleteHistoryItem(event) {
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const container = document.querySelector('.container');
+    const isMobile = window.innerWidth <= 768;
+
     sidebar.classList.toggle('open');
-    container.classList.toggle('sidebar-open');
+    
+    if (isMobile) {
+        if (sidebar.classList.contains('open')) {
+            sidebar.style.left = '0';
+            container.style.filter = 'blur(3px)';
+        } else {
+            sidebar.style.left = '-100%';
+            container.style.filter = 'none';
+        }
+    } else {
+        container.classList.toggle('sidebar-open');
+    }
 }

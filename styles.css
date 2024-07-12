@@ -154,11 +154,11 @@ body {
 
 .sidebar {
   height: 100%;
-  width: 250px; /* 设置一个固定宽度 */
+  width: 250px;
   position: fixed;
-  z-index: 1000; /* 确保侧边栏在最上层 */
+  z-index: 1000;
   top: 0;
-  left: -250px; /* 默认隐藏 */
+  left: -250px;
   background-color: #f8f8f8;
   overflow-x: hidden;
   transition: 0.3s;
@@ -189,15 +189,18 @@ body {
 
 /* 在小屏幕上的特殊处理 */
 @media screen and (max-width: 768px) {
-  .sidebar {
-      width: 100%;
-      left: -100%;
-  }
-  
-  .container.sidebar-open {
-      margin-left: 0;
-      opacity: 0.3; /* 使主内容区域变暗 */
-  }
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .container {
+        transition: filter 0.3s;
+    }
 }
 
 /* 添加一个关闭按钮 */
@@ -349,13 +352,16 @@ body {
     font-size: 16px;
     padding: 8px 8px 8px 16px;
   }
-  
-  #history-list li {
-    padding: 8px 8px 8px 16px;
-  }
-  
+
   #history-list li a {
-    font-size: 14px;
+    padding: 12px 32px; /* 增加点击区域 */
+    padding-right: 50px; /* 为删除按钮留出更多空间 */
+  }
+
+  .delete-btn {
+      right: 15px;
+      padding: 12px 15px; /* 增加点击区域 */
+      font-size: 20px; /* 增大字体大小，更容易点击 */
   }
 }
 

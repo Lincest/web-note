@@ -60,10 +60,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const container = document.querySelector('.container');
     const sidebar = document.getElementById('sidebar');
-
-    container.addEventListener('click', function(e) {
-        if (sidebar.classList.contains('open') && window.innerWidth <= 768) {
-            toggleSidebar();
-        }
-    });
 });

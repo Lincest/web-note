@@ -61,3 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container');
     const sidebar = document.getElementById('sidebar');
 });
+
+// toggle history sidebar
+Mousetrap.bind('mod+k', function () {
+    toggleSidebar();
+    return false;
+});

@@ -21,7 +21,18 @@ function renderMarkdown() {
             history.pushState(null, null, markedUrl);
         }
         var markdownText = contentTextarea.value;
-        var renderedContent = marked.parse(markdownText);
+        const renderer = new marked.Renderer();
+
+        renderer.image = function(href, title, text) {
+            let size = '100%';
+            console.log("text", text);
+            if (text && text.endsWith('%')) {
+                size = text;
+                text = title || '';
+            }
+            return `<img src="${href}" title="${title || ''}" alt="${text}" style="width: ${size};">`;
+        };
+        var renderedContent = marked.parse(markdownText, { renderer: renderer });
         markdownContent.innerHTML = renderedContent;
         markdownContent.style.display = "block";
         contentTextarea.style.display = "none";

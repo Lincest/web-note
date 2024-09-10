@@ -131,10 +131,10 @@ body {
 
 #markdown-content img {
   display: inline-block;
-  max-width: 100%;
   height: auto;
   vertical-align: middle;
   margin: 0.5rem;
+  max-width: 100%; /* 确保图片不会超出容器 */
 }
 
 #markdown-content p {
@@ -162,7 +162,7 @@ body {
   }
 
   #markdown-content p:has(img) img {
-    width: 100%;
+    width: 100%; /* 这里的宽度会被内联样式覆盖 */
     height: auto;
     object-fit: contain;  /* 改为 contain 以保持原始比例 */
   }
@@ -175,8 +175,8 @@ body {
   }
 
   #markdown-content p:has(img:only-child) img {
-    max-width: 70%;
-    width: auto;
+    max-width: 70%; /* 允许单张图片使用指定的宽度 */
+    width: auto; /* 这里的宽度会被内联样式覆盖 */
     height: auto;
   }
 }

@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const container = document.querySelector('.container');
     const sidebar = document.getElementById('sidebar');
+
+    // Add paste event listener
+    textarea.addEventListener('paste', handlePaste);
 });
 
 // toggle history sidebar
@@ -67,3 +70,56 @@ Mousetrap.bind('mod+k', function () {
     toggleSidebar();
     return false;
 });
+
+function handlePaste(e) {
+    const items = e.clipboardData.items;
+    
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+            e.preventDefault();
+            const blob = items[i].getAsFile();
+            setTimeout(() => {
+                showNotification("正在上传...");
+                uploadImage(blob);
+            }, 500);
+            break;
+        }
+    }
+}
+
+function uploadImage(blob) {
+    const formData = new FormData();
+    formData.append('fill', 'false');
+    formData.append('image', blob, 'clipboard_image.png');
+
+    fetch('https://444410.xyz/api', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            const imageUrl = 'https://444410.xyz' + data.message;
+            insertImageUrl(imageUrl);
+            showNotification("图片上传成功");
+        } else {
+            console.error('Upload failed:', data);
+            showNotification("图片上传失败");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification("图片上传出错");
+    });
+}
+
+function insertImageUrl(url) {
+    const textarea = document.getElementById('content');
+    const cursorPos = textarea.selectionStart;
+    const textBefore = textarea.value.substring(0, cursorPos);
+    const textAfter = textarea.value.substring(cursorPos);
+    
+    textarea.value = textBefore + `![](${url})` + textAfter;
+    textarea.selectionStart = textarea.selectionEnd = cursorPos + url.length + 4;
+    textarea.focus();
+}

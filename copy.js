@@ -30,15 +30,6 @@ clipboard.on('error', function (e) {
 
 document.getElementById('showQRCode').addEventListener('click', function (e) {
     e.preventDefault();
-    // document.getElementById('qrcodePopup').style.display = 'block';
-    // if (!isGenerate) {
-    //     var qrcode = new QRCode(document.getElementById('qrcode'), {
-    //         text: getUrl(),
-    //         width: 200,
-    //         height: 200
-    //     });
-    //     isGenerate = true;
-    // }
 });
 
 document.addEventListener('click', function (e) {

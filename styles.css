@@ -130,10 +130,55 @@ body {
 }
 
 #markdown-content img {
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
+  margin: 0.5rem;
+}
+
+#markdown-content p {
+  margin: 1rem 0;
+}
+
+#markdown-content p:has(img) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem -0.5rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  #markdown-content p:has(img) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    max-width: 80%;  /* 限制最大宽度 */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #markdown-content p:has(img) img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;  /* 改为 contain 以保持原始比例 */
+  }
+
+  /* 处理单张图片的情况 */
+  #markdown-content p:has(img:only-child) {
+    display: block;
+    text-align: center;
+    max-width: none;  /* 移除最大宽度限制 */
+  }
+
+  #markdown-content p:has(img:only-child) img {
+    max-width: 70%;
+    width: auto;
+    height: auto;
+  }
 }
 
 #markdown-content blockquote {

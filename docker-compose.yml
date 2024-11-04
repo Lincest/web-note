@@ -1,13 +1,20 @@
 version: "3"
 services:
   web-note:
-    build: .
+    build:
+      context: .
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     container_name: web-note
     restart: always
     ports:
-     - "80:80"
+      - "8086:80"
     volumes:
-     - ./data:/var/www/html/_tmp
+      - ./data:/var/www/html/_tmp
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
     # environment:
     #  FILE_LIMIT: 100000 # the number of files limit (default: 100000)
     #  SINGLE_FILE_SIZE_LIMIT: 102400 # single file size limit, unit: byte (default: 102400)

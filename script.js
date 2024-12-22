@@ -89,17 +89,18 @@ function handlePaste(e) {
 
 function uploadImage(blob) {
     const formData = new FormData();
-    formData.append('fill', 'false');
     formData.append('image', blob, 'clipboard_image.png');
 
-    fetch('https://444410.xyz/api', {
+    fetch('https://imgdd.com/api/v1/upload', {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+        }
     })
     .then(response => response.json())
     .then(data => {
-        if (data.message) {
-            const imageUrl = 'https://444410.xyz' + data.message;
+        if (data.url) {
+            const imageUrl = data.url;
             insertImageUrl(imageUrl);
             showNotification("图片上传成功");
         } else {

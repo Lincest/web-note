@@ -170,8 +170,8 @@
     function toolbar(type) {
         return '<div class="sv-toolbar">'
             + '<span class="sv-type">' + type + '</span>'
-            + '<button class="sv-btn" onclick="window._svExpandAll()">展开全部</button>'
-            + '<button class="sv-btn" onclick="window._svCollapseAll()">折叠全部</button>'
+            + '<button class="sv-btn" onclick="window._svExpandAll()">Expand All</button>'
+            + '<button class="sv-btn" onclick="window._svCollapseAll()">Collapse All</button>'
             + '</div>';
     }
 

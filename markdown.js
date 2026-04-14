@@ -29,7 +29,7 @@ function renderMarkdown() {
                 markdownContent.innerHTML = structured;
                 markdownContent.style.display = "block";
                 contentTextarea.style.display = "none";
-                button.style.display = "block";
+                button.style.display = "none";
                 renderStatusIcon.innerHTML = "🔒";
                 return;
             }

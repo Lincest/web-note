@@ -89,7 +89,7 @@ function _generateExcerpt($text, $length = 150) {
     <title>web-note · <?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
-    <meta name="description" content="📔 <?php print generateExcerptByPath($path); ?>">
+    <meta name="description" content="📔 <?php print htmlspecialchars(generateExcerptByPath($path), ENT_QUOTES, 'UTF-8'); ?>">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -138,5 +138,7 @@ function _generateExcerpt($text, $length = 150) {
     <script src="<?php print $base_url; ?>/copy.js"></script>
     <!-- upload   -->
     <script src="<?php print $base_url; ?>/script.js"></script>
+    <!-- format JSON / XML / ION -->
+    <script src="<?php print $base_url; ?>/format.js"></script>
 </body>
 </html>

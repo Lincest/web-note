@@ -425,3 +425,154 @@ pre code:hover {
     background-color: rgba(0,0,0,0.02);
 }
 
+/* ─── Structured viewer (JSON / XML / ION) ──────────────────────────────── */
+
+/* toolbar */
+.sv-toolbar {
+  position: sticky;
+  top: -20px;         /* cancel out #markdown-content padding */
+  margin: -20px -20px 12px -20px;
+  padding: 6px 16px;
+  background: rgba(248,248,248,0.95);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !important;
+  font-size: 12px;
+}
+.sv-type {
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 0.05em;
+  margin-right: auto;
+}
+.sv-btn {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #444;
+  font-family: inherit !important;
+  transition: background 0.15s, border-color 0.15s;
+}
+.sv-btn:hover {
+  background: #e8e8e8;
+  border-color: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sv-toolbar {
+    background: rgba(30,33,38,0.95);
+    border-bottom-color: #444;
+  }
+  .sv-type  { color: #888; }
+  .sv-btn   { border-color: #555; color: #ccc; }
+  .sv-btn:hover { background: #3a3f4b; border-color: #888; }
+}
+
+.sv {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 4px 0;
+}
+
+/* collapse / expand triangle */
+.sv details > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sv details > summary::-webkit-details-marker { display: none; }
+.sv details > summary::before {
+  content: '▶';
+  display: inline-block;
+  width: 1em;
+  margin-right: 2px;
+  font-size: 0.65em;
+  color: #999;
+  vertical-align: middle;
+  transition: transform 0.15s;
+}
+.sv details[open] > summary::before { transform: rotate(90deg); }
+.sv details > summary:hover { background: rgba(0,0,0,0.04); border-radius: 3px; }
+
+/* indented children */
+.jv-block, .xv-block { padding-left: 1.5em; border-left: 1px solid #e0e0e0; margin-left: 0.5em; }
+.xv-close            { padding-left: 0; }
+
+/* rows */
+.jv-row, .xv-row { padding: 1px 0; white-space: pre-wrap; word-break: break-all; }
+.jv-row:hover, .xv-row:hover { background: rgba(0,0,0,0.03); border-radius: 3px; }
+
+/* JSON colours — light mode */
+.jv-key    { color: #005cc5; }
+.jv-str    { color: #22863a; }
+.jv-num    { color: #c94922; }
+.jv-bool   { color: #e36209; }
+.jv-null   { color: #6a737d; font-style: italic; }
+.jv-empty  { color: #6a737d; }
+.jv-brace  { color: #24292e; font-weight: 600; }
+.jv-hint   { color: #999; font-size: 0.85em; }
+.jv-colon  { color: #444; }
+.jv-comma  { color: #888; }
+.jv-ellipsis { color: #999; }
+.jv-more   { color: #999; font-style: italic; }
+
+/* XML colours — light mode */
+.xv-tag    { color: #22863a; font-weight: 600; }
+.xv-aname  { color: #e36209; }
+.xv-aval   { color: #032f62; }
+.xv-text   { color: #24292e; }
+.xv-punct  { color: #6a737d; }
+.xv-hint   { color: #999; font-size: 0.85em; }
+.xv-pi     { color: #6a737d; font-style: italic; }
+.xv-comment { color: #6a737d; font-style: italic; }
+.xv-cmt-text { color: #6a737d; }
+
+/* ION formatted code block */
+.sv-code {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 13px;
+  color: inherit;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .jv-block, .xv-block { border-left-color: #444; }
+  .jv-row:hover, .xv-row:hover { background: rgba(255,255,255,0.05); }
+  .sv details > summary:hover  { background: rgba(255,255,255,0.05); }
+
+  .jv-key   { color: #79b8ff; }
+  .jv-str   { color: #85e89d; }
+  .jv-num   { color: #f78166; }
+  .jv-bool  { color: #ffab70; }
+  .jv-null  { color: #8b949e; }
+  .jv-empty { color: #8b949e; }
+  .jv-brace { color: #e1e4e8; }
+  .jv-hint  { color: #666; }
+  .jv-colon { color: #aaa; }
+  .jv-comma { color: #666; }
+
+  .xv-tag    { color: #85e89d; }
+  .xv-aname  { color: #ffab70; }
+  .xv-aval   { color: #9ecbff; }
+  .xv-text   { color: #e1e4e8; }
+  .xv-punct  { color: #8b949e; }
+  .xv-hint   { color: #666; }
+  .xv-comment, .xv-cmt-text { color: #8b949e; }
+}
+

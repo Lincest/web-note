@@ -21,6 +21,20 @@ function renderMarkdown() {
             history.pushState(null, null, markedUrl);
         }
         var markdownText = contentTextarea.value;
+
+        // If content is JSON / XML / ION, render collapsible tree instead of markdown
+        if (window._fmtRender) {
+            var structured = window._fmtRender(markdownText);
+            if (structured) {
+                markdownContent.innerHTML = structured;
+                markdownContent.style.display = "block";
+                contentTextarea.style.display = "none";
+                button.style.display = "block";
+                renderStatusIcon.innerHTML = "🔒";
+                return;
+            }
+        }
+
         const renderer = new marked.Renderer();
 
         renderer.image = function(href, title, text) {

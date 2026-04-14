@@ -220,6 +220,22 @@
         document.querySelectorAll('#markdown-content details').forEach(function (d) { d.open = false; });
     };
 
+    // Toggle: if all open → collapse all, otherwise → expand all
+    window._svToggle = function () {
+        var all = document.querySelectorAll('#markdown-content details');
+        if (!all.length) return;
+        var allOpen = Array.from(all).every(function (d) { return d.open; });
+        all.forEach(function (d) { d.open = !allOpen; });
+    };
+
+    // Mod+O — only active when structured viewer is visible
+    Mousetrap.bind('mod+o', function () {
+        if (document.getElementById('markdown-content').style.display !== 'none') {
+            window._svToggle();
+        }
+        return false;
+    });
+
     // ── JSON tree ────────────────────────────────────────────────────────────
 
     const MAX_ITEMS = 500; // cap per array/object to avoid DOM explosion
@@ -443,14 +459,31 @@
 
     // ─── Init ───────────────────────────────────────────────────────────────
 
+    // On page refresh with ?marked in URL, markdown.js runs autoMark() before
+    // format.js is loaded, so it falls back to marked.parse() instead of the
+    // tree viewer. Re-render once format.js is ready.
+    function tryRerender() {
+        if (!window.location.href.includes('?marked')) return;
+        var mc = document.getElementById('markdown-content');
+        var ct = document.getElementById('content');
+        if (!mc || !ct || mc.style.display === 'none') return;
+        var structured = renderStructured(ct.value);
+        if (structured) {
+            mc.innerHTML = structured;
+            document.getElementById('clippy').style.display = 'none';
+        }
+    }
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
             setupPasteFormat();
             addFormatButton();
+            tryRerender();
         });
     } else {
         setupPasteFormat();
         addFormatButton();
+        tryRerender();
     }
 
     // Expose for markdown.js hook

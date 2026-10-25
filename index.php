@@ -19,7 +19,7 @@ header('Pragma: no-cache');
 header('Expires: 0');
 
 // If no name is provided or it contains invalid characters or it is too long.
-if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) || strlen($_GET['note']) > 64) {
+if (!isset($_GET['note']) || !is_string($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) || strlen($_GET['note']) > 64) {
 
     // Generate a name with 5 random unambiguous characters. Redirect to it.
     header("Location: $base_url/" . substr(str_shuffle('234579abcdefghjkmnpqrstwxyz'), -5));
@@ -29,6 +29,11 @@ if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) ||
 $path = $save_path . '/' . $_GET['note'];
 
 if (isset($_POST['text'])) {
+
+    if (!is_string($_POST['text'])) {
+        http_response_code(400);
+        die;
+    }
 
     // file count limit
     if ($fileCount >= $file_limit) {

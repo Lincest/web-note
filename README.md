@@ -29,6 +29,20 @@ services:
 
 ##  2. <a name='FromSource'></a>From Source
 
+### PHP security updates
+
+The image uses PHP 8.4.27, which includes the fixes for CVE-2026-109618 and
+CVE-2026-109619 (PHP2Shell). Session upload progress is disabled at startup.
+PHP 7.4 images must be replaced; restarting an existing container does not update PHP.
+See the [PHP security advisory](https://www.php.net/archive/2026.php#2026-10-21-5).
+
+Back up `./data` before upgrading. For a registry deployment, run
+`docker compose pull && docker compose up -d`; for a source deployment, run
+`docker compose build --pull && docker compose up -d`.
+Confirm the running version with `docker compose exec web-note php -v` and test
+reading and saving a note. If a reverse proxy runs on the host, bind the service
+to `127.0.0.1:80:80` (or your chosen local port) to prevent direct public access.
+
 to build your image from source code, just clone this repo and use `docker-compose up --build` in the source code directory.
 
 ##  3. <a name='CommandlineUsage'></a>Commandline Usage

@@ -1,7 +1,8 @@
-FROM php:7.4-apache
+FROM php:8.4.27-apache
 
 # Set PHP configuration to production
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+COPY php-security.ini /usr/local/etc/php/conf.d/zz-security.ini
 
 # Enable rewrite
 RUN a2enmod rewrite

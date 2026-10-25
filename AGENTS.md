@@ -4,7 +4,7 @@
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | PHP 7.4 (Apache) |
+| Backend | PHP 8.4.27+ (Apache) |
 | Frontend | Vanilla JS + HTML5 + CSS3 (no framework) |
 | Storage | File-based (`_tmp/` directory, one file per note) |
 | Container | Docker + Docker Compose |
